@@ -31,10 +31,29 @@ python3.5 -m venv ~/py3
 . ~/py3/bin/activate
 pip install -U pip
 pip install -U Cython
-pip install -U jupyter jupyter_client ipython pandas matplotlib scipy scikit-learn khmer
+pip install -U jupyter jupyter_client ipython pandas matplotlib scipy scikit-learn ipfsapi khmer
 
 pip install -U https://github.com/dib-lab/sourmash/archive/master.zip
 
+```
+
+## Installing IPFS
+
+The machine we are using doesn't have enough space to download the full database,
+so we are going to use IPFS to load it on demand.
+
+```
+mkdir ~/bin
+wget -O ~/go-ipfs.tar.gz https://dist.ipfs.io/go-ipfs/v0.4.9/go-ipfs_v0.4.9_linux-amd64.tar.gz
+tar xf ~/go-ipfs.tar.gz
+mv ~/go-ipfs/ipfs ~/bin
+rm -rf go-ipfs*
+```
+
+```
+ipfs init
+ipfs daemon &>/dev/null &  # not sure if we want to avoid output, but we can't print all the IPFS logs to screen also...
+ipfs cat /ipfs/QmVLDAhCY3X9P2uRudKAryuQFPM5zqA3Yij1dY8FpGbL7T/readme
 ```
 
 ## Generate a signature for Illumina reads
@@ -197,6 +216,15 @@ in
 [CTB's blog post](http://ivory.idyll.org/blog/2016-sourmash-sbt-more.html)
 -- this one contains sketches of all 100k Genbank microbes. (See
 [available databases](databases.html) for more information.)
+
+```
+ipfs get -o genbank-k31.sbt.json QmfAVY4HxRBeP3YqY5u7hJiWeo5sZDNywJuBVEt6TnpgwF
+```
+
+This produces a file `genbank-k31.sbt.json`,
+containing the description (the metadata) of the SBT.
+We will download the data on demand today (because we don't have enough storage in the machines we created in Jetstream),
+but you can also download the full database on other machines with:
 
 ```
 curl -O https://s3-us-west-1.amazonaws.com/spacegraphcats.ucdavis.edu/microbe-genbank-sbt-k31-2017.05.09.tar.gz
