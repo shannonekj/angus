@@ -53,7 +53,11 @@ rm -rf go-ipfs*
 ```
 ipfs init
 ipfs daemon &>/dev/null &  # not sure if we want to avoid output, but we can't print all the IPFS logs to screen also...
-ipfs cat /ipfs/QmVLDAhCY3X9P2uRudKAryuQFPM5zqA3Yij1dY8FpGbL7T/readme
+```
+
+While we go through the tutorial, let's start downloading parts of the database in the background:
+```
+for f in $(ipfs cat QmQBuEyREL66nsvSSkE2wJuyvZYXHW9ZZyZNUvno122KWd); do ipfs pin add $f &>/dev/null; done &
 ```
 
 ## Generate a signature for Illumina reads
