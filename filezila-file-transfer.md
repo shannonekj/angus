@@ -36,8 +36,8 @@ Within the 'Site Manager' window, do the following:
 2. Host: address of your cloud instance (e.g. ec2-...) 
 3. Protocol: SFTP - SSH File Transfer Protocol
 4. Logon Type: Normal
-5. User: dcuser
-6. Password: data4Carp
+5. User: `tx160085`
+6. Password: the password you gave to your instance on Tuesday!
 7. Click 'Connect'
 	
 ![FileZilla_step2](../img/FileZilla_step2.png) **ADD IMAGE**
