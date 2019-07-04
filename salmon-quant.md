@@ -146,7 +146,7 @@ R and performing differential expression with them.
 <blockquote>
 <center><b>PRACTICE!</b></center>
 
-How can we use the `grep` command to find the mapability percentages (<i>percent_mapped</i>) in ALL our json files?
+How can we use the `grep` command to find the mappability percentages (<i>percent_mapped</i>) in ALL our json files? Make sure to print out the name of each file before you print the mappability percentage!
 
 <div class="toggle-header closed">
     <strong>Solution</strong>
@@ -160,16 +160,15 @@ How can we use the `grep` command to find the mapability percentages (<i>percent
 <span class="nb">cd ~/quant/
 for infile in *_quant/aux_info/meta_info.json
 do
+echo ${infile}
 grep "percent_mapped" ${infile}
 done</span>
 </pre>
 </div>
 </div>
 
-We could find this out by looking at `man wc`, running `wc --help`, or by visiting our good friend Google 🙂 
+First we use `echo` to print the name of the file. Then, we use `grep` to find and print the line containing the mappability percentage.
 <br>
-<br>
-<center>Printing out how many lines are in a file like this is super-useful for things like quickly seeing how many rows are in a large table, or how many sequences are in a file.</center>
 
 </div>
 </blockquote>
